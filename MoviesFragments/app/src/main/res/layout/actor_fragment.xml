@@ -26,6 +26,12 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/colorAccent"
         android:clickable="true"
+        android:onClick="newFragmentAtor"
         app:srcCompat="@drawable/ic_add" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_ator"/>
 
 </RelativeLayout>

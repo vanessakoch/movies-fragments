@@ -34,4 +34,13 @@ public class Actor {
     public void setDataNascimentoAtor(String dataNascimentoAtor) {
         this.dataNascimentoAtor = dataNascimentoAtor;
     }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "fotoAtor=" + fotoAtor +
+                ", nomeAtor='" + nomeAtor + '\'' +
+                ", dataNascimentoAtor='" + dataNascimentoAtor + '\'' +
+                '}';
+    }
 }

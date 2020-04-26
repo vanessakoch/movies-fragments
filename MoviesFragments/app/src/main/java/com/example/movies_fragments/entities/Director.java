@@ -36,4 +36,13 @@ public class Director {
     public void setDataNascimentoDiretor(String dataNascimentoDiretor) {
         this.dataNascimentoDiretor = dataNascimentoDiretor;
     }
+
+    @Override
+    public String toString() {
+        return "Director{" +
+                "fotoDiretor=" + fotoDiretor +
+                ", nomeDiretor='" + nomeDiretor + '\'' +
+                ", dataNascimentoDiretor='" + dataNascimentoDiretor + '\'' +
+                '}';
+    }
 }

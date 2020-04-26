@@ -9,35 +9,37 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.entities.Director;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerDirectorAdapter extends RecyclerView.Adapter<RecyclerDirectorAdapter.MyViewHolder> {
+public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyViewHolder> {
 
-    Context mContext;
+    AppCompatActivity activity;
     List<Director> directorList;
 
-    public RecyclerDirectorAdapter(Context mContext, List<Director> directorList) {
-        this.mContext = mContext;
+    public DirectorAdapter(AppCompatActivity activity, List<Director> directorList) {
+        this.activity = activity;
         this.directorList = directorList;
     }
 
     @NonNull
     @Override
-    public RecyclerDirectorAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DirectorAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        view = LayoutInflater.from(mContext).inflate(R.layout.item_director, parent, false);
-        RecyclerDirectorAdapter.MyViewHolder holder = new RecyclerDirectorAdapter.MyViewHolder(view);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_director, parent, false);
+        DirectorAdapter.MyViewHolder holder = new DirectorAdapter.MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerDirectorAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final DirectorAdapter.MyViewHolder holder, int position) {
         holder.img_diretor.setImageResource(directorList.get(position).getFotoDiretor());
         holder.txt_nomeDiretor.setText(directorList.get(position).getNomeDiretor());
         holder.txt_dataNascimentoDiretor.setText(directorList.get(position).getDataNascimentoDiretor());
@@ -60,7 +62,6 @@ public class RecyclerDirectorAdapter extends RecyclerView.Adapter<RecyclerDirect
         private TextView txt_nomeDiretor;
         private TextView txt_dataNascimentoDiretor;
         private ImageView img_diretor;
-        private FloatingActionButton btnDiretor;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -69,7 +70,6 @@ public class RecyclerDirectorAdapter extends RecyclerView.Adapter<RecyclerDirect
             txt_nomeDiretor = (TextView) itemView.findViewById(R.id.txt_nomeDiretor);
             txt_dataNascimentoDiretor = (TextView) itemView.findViewById(R.id.txt_nascDiretor);
             img_diretor = (ImageView) itemView.findViewById(R.id.img_diretor);
-            btnDiretor = (FloatingActionButton) itemView.findViewById(R.id.btnDiretor);
         }
     }
 
