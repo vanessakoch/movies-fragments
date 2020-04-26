@@ -8,23 +8,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
+import com.example.movies_fragments.controller.ActorController;
 import com.example.movies_fragments.entities.Actor;
 
-import java.util.List;
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder> {
-
     MainActivity activity;
-    List<Actor> actorList;
+    ActorController controller = new ActorController();
 
     public ActorAdapter(MainActivity activity) {
         this.activity = activity;
-        this.actorList = activity.actorsList();
+        this.controller = controller.getController();
     }
 
     @NonNull
@@ -38,21 +36,21 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final ActorAdapter.MyViewHolder holder, int position) {
-        holder.img_ator.setImageResource(actorList.get(position).getFotoAtor());
-        holder.txt_nomeAtor.setText(actorList.get(position).getNomeAtor());
-        holder.txt_dataNascimentoAtor.setText(actorList.get(position).getDataNascimentoAtor());
+        holder.img_ator.setImageResource(controller.getListAtor().get(position).getFotoAtor());
+        holder.txt_nomeAtor.setText(controller.getListAtor().get(position).getNomeAtor());
+        holder.txt_dataNascimentoAtor.setText(controller.getListAtor().get(position).getDataNascimentoAtor());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),actorList.get(holder.getAdapterPosition()).getNomeAtor(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), controller.getListAtor().get(holder.getAdapterPosition()).getNomeAtor(),Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return actorList.size();
+        return controller.getListAtor().size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -71,7 +69,7 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
     }
 
     public void insertItem(Actor ator) {
-        actorList.add(ator);
+        controller.getListAtor().add(ator);
         notifyItemInserted(getItemCount());
     }
 }

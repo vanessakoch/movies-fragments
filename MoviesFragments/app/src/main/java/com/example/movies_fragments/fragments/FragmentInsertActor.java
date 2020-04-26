@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.adapters.ActorAdapter;
+import com.example.movies_fragments.controller.ActorController;
 import com.example.movies_fragments.entities.Actor;
 
 import java.util.Calendar;
@@ -35,17 +36,11 @@ public class FragmentInsertActor extends Fragment {
         this.activity = activity;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_actor, container, false);
 
-        activity = new MainActivity();
         adapterAtor = new ActorAdapter(activity);
 
         img_ator = (ImageView) view.findViewById(R.id.img_actornovo);
@@ -57,16 +52,17 @@ public class FragmentInsertActor extends Fragment {
 
         btnadd_ator.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Actor novo = new Actor(R.drawable.chadwick_boseman, String.valueOf(nome_ator.getText()), String.valueOf(date_ator.getText()));
-                adapterAtor.insertItem(novo);
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frame_ator, new FragmentActor(activity)).commit();
-
+            public void onClick(View v) {
+            Actor novo = new Actor(R.drawable.chadwick_boseman, String.valueOf(nome_ator.getText()), String.valueOf(date_ator.getText()));
+            adapterAtor.insertItem(novo);
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame_ator, new FragmentActor(activity)).commit();
             }
         });
+
         return view;
     }
+
 
     private void selecionaCalendario(EditText date){
         date.setOnClickListener(new View.OnClickListener() {

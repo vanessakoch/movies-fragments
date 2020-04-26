@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,9 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
-import com.example.movies_fragments.adapters.ActorAdapter;
 import com.example.movies_fragments.adapters.DirectorAdapter;
-import com.example.movies_fragments.entities.Actor;
 import com.example.movies_fragments.entities.Director;
 
 import java.util.Calendar;
@@ -38,18 +35,12 @@ public class FragmentInsertDirector extends Fragment {
         this.activity = activity;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_director, container, false);
 
-        activity = new MainActivity();
-        adapterDiretor = new DirectorAdapter(activity, activity.directorsList());
+        adapterDiretor = new DirectorAdapter(activity);
 
         img_diretor = (ImageView) view.findViewById(R.id.img_diretornovo);
         nome_diretor = (EditText) view.findViewById(R.id.txtNomeDiretor);
@@ -68,7 +59,6 @@ public class FragmentInsertDirector extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -76,20 +66,20 @@ public class FragmentInsertDirector extends Fragment {
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                int dia = calendar.get(Calendar.DAY_OF_MONTH);
-                int mes = calendar.get(Calendar.MONTH);
-                int ano = calendar.get(Calendar.YEAR);
+            final Calendar calendar = Calendar.getInstance();
+            int dia = calendar.get(Calendar.DAY_OF_MONTH);
+            int mes = calendar.get(Calendar.MONTH);
+            int ano = calendar.get(Calendar.YEAR);
 
-                picker = new DatePickerDialog(getContext(),
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-                                date_diretor.setText(i2 + "/" + (i1 + 1) + "/" + i);
-                            }
-                        }, ano, mes, dia);
+            picker = new DatePickerDialog(getContext(),
+                    new DatePickerDialog.OnDateSetListener() {
+                        @Override
+                        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                            date_diretor.setText(i2 + "/" + (i1 + 1) + "/" + i);
+                        }
+                    }, ano, mes, dia);
 
-                picker.show();
+            picker.show();
             }
         });
 

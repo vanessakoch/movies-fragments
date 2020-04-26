@@ -43,4 +43,5 @@ public class Actor {
                 ", dataNascimentoAtor='" + dataNascimentoAtor + '\'' +
                 '}';
     }
+
 }

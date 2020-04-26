@@ -22,6 +22,7 @@ public class FragmentMovie extends Fragment {
     View view;
     RecyclerView recyclerView;
     MainActivity activity;
+    MovieAdapter adapter;
 
     public FragmentMovie(MainActivity activity) {
         this.activity = activity;
@@ -31,17 +32,14 @@ public class FragmentMovie extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.movie_fragment, container, false);
+
+        adapter = new MovieAdapter(activity);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.movie_recyclerview);
-        MovieAdapter adapter = new MovieAdapter(activity);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
+
         return view;
     }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
 
 }

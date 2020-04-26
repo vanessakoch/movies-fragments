@@ -5,12 +5,10 @@ public class Movie {
     private String titulo;
     private int anoLançamento;
     private String genero;
-    private String diretor;
-    private String protagonista;
+    private Director diretor;
+    private Actor protagonista;
 
-    public Movie(){ }
-
-    public Movie(int fotoFilme, String titulo, int anoLançamento, String genero, String diretor, String protagonista) {
+    public Movie(int fotoFilme, String titulo, int anoLançamento, String genero, Director diretor, Actor protagonista) {
         this.fotoFilme = fotoFilme;
         this.titulo = titulo;
         this.anoLançamento = anoLançamento;
@@ -51,19 +49,19 @@ public class Movie {
         this.genero = genero;
     }
 
-    public String getDiretor() {
+    public Director getDiretor() {
         return diretor;
     }
 
-    public void setDiretor(String diretor) {
+    public void setDiretor(Director diretor) {
         this.diretor = diretor;
     }
 
-    public String getProtagonista() {
+    public Actor getProtagonista() {
         return protagonista;
     }
 
-    public void setProtagonista(String protagonista) {
+    public void setProtagonista(Actor protagonista) {
         this.protagonista = protagonista;
     }
 }

@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
+import com.example.movies_fragments.controller.ActorController;
+import com.example.movies_fragments.controller.DirectorController;
 import com.example.movies_fragments.entities.Director;
 
 import java.util.ArrayList;
@@ -21,12 +23,12 @@ import java.util.List;
 
 public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyViewHolder> {
 
-    AppCompatActivity activity;
-    List<Director> directorList;
+    MainActivity activity;
+    DirectorController controller = new DirectorController();
 
-    public DirectorAdapter(AppCompatActivity activity, List<Director> directorList) {
+    public DirectorAdapter(MainActivity activity) {
         this.activity = activity;
-        this.directorList = directorList;
+        this.controller = controller.getController();
     }
 
     @NonNull
@@ -40,21 +42,21 @@ public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull final DirectorAdapter.MyViewHolder holder, int position) {
-        holder.img_diretor.setImageResource(directorList.get(position).getFotoDiretor());
-        holder.txt_nomeDiretor.setText(directorList.get(position).getNomeDiretor());
-        holder.txt_dataNascimentoDiretor.setText(directorList.get(position).getDataNascimentoDiretor());
+        holder.img_diretor.setImageResource(controller.getListDiretor().get(position).getFotoDiretor());
+        holder.txt_nomeDiretor.setText(controller.getListDiretor().get(position).getNomeDiretor());
+        holder.txt_dataNascimentoDiretor.setText(controller.getListDiretor().get(position).getDataNascimentoDiretor());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),directorList.get(holder.getAdapterPosition()).getNomeDiretor(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), controller.getListDiretor().get(holder.getAdapterPosition()).getNomeDiretor(),Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return directorList.size();
+        return controller.getListDiretor().size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -74,7 +76,7 @@ public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyView
     }
 
     public void insertItem(Director diretor) {
-        directorList.add(diretor);
+        controller.getListDiretor().add(diretor);
         notifyItemInserted(getItemCount());
     }
 }

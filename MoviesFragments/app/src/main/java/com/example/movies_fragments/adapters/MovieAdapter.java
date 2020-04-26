@@ -11,35 +11,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
+import com.example.movies_fragments.controller.MovieController;
 import com.example.movies_fragments.entities.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
+    MainActivity activity;
+    MovieController controller = new MovieController();
 
-    AppCompatActivity activity;
-    List<Movie> movieList;
-
-
-    public MovieAdapter(AppCompatActivity activity) {
+    public MovieAdapter(MainActivity activity) {
         this.activity = activity;
-        this.movieList = new ArrayList<Movie>();;
-
-        movieList.add(new Movie(R.drawable.filme_alita,"Alita: Battle Angel",2019,"Action, Adventure, Sci-Fi","Robert Rodriguez","Rosa Salazar"));
-        movieList.add(new Movie(R.drawable.filme_batman_superman,"Batman v Superman",2016,"Action, Adventure, Sci-Fi","Zack Snyder","Ben Affleck"));
-        movieList.add(new Movie(R.drawable.filme_bladerunner,"Blade Runner",2017,"Action, Drama, Mistery","Denis Villeneuve","Harrison Ford"));
-        movieList.add(new Movie(R.drawable.filme_capita_marvel,"Capitain Marvel",2019,"Action, Adventure, Sci-Fi","Anna Boden","Brie Larson"));
-        movieList.add(new Movie(R.drawable.filme_civilwar,"Captain America: Civil War",2016,"Action, Adventure, Sci-Fi","Anthony Russo","Christopher Robert Evans"));
-        movieList.add(new Movie(R.drawable.filme_coringa,"Joker",2019,"Crime, Drama, Thriller","Todd Phillips","Joaquin Phoenix"));
-        movieList.add(new Movie(R.drawable.filme_jurassicworld,"Jurassic World",2018,"Action, Adventure, Sci-Fi","Juan Antônio García Bayona","Chris Pratt"));
-        movieList.add(new Movie(R.drawable.filme_liga_justica,"Justice League",2018,"Action, Adventure, Fantasy","Zack Snyder","Ben Affleck"));
-        movieList.add(new Movie(R.drawable.filme_madmax,"Mad Max: Fury Road",2015,"Action, Adventure, Sci-Fi","George Miller","Tom Hardy"));
-        movieList.add(new Movie(R.drawable.filme_moonlight,"Moonlight",2016,"Drama","Barry Jenkins","Mahershala Ali"));
-        movieList.add(new Movie(R.drawable.filme_pantera_negra,"Black Panther",2018,"Action, Adventure, Sci-Fi","Ryan Coogler","Chadwick Boseman"));
-        movieList.add(new Movie(R.drawable.filme_starwars,"Star Wars: Episode VII",2015,"Action, Adventure, Sci-Fi","Jeffrey Jacob Abrams","Daisy Ridley"));
-
+        this.controller = controller.getController();
     }
 
     @NonNull
@@ -53,17 +39,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.img_movie.setImageResource(movieList.get(position).getFotoFilme());
-        holder.tv_titulo.setText(movieList.get(position).getTitulo());
-        holder.tv_lancamento.setText(String.valueOf(movieList.get(position).getAnoLançamento()));
-        holder.tv_genero.setText(movieList.get(position).getGenero());
-        holder.tv_diretor.setText(movieList.get(position).getDiretor());
-        holder.tv_protagonista.setText(movieList.get(position).getProtagonista());
+        holder.img_movie.setImageResource(controller.getListMovie().get(position).getFotoFilme());
+        holder.tv_titulo.setText(controller.getListMovie().get(position).getTitulo());
+        holder.tv_lancamento.setText(String.valueOf(controller.getListMovie().get(position).getAnoLançamento()));
+        holder.tv_genero.setText(controller.getListMovie().get(position).getGenero());
+        holder.tv_diretor.setText(controller.getListMovie().get(position).getDiretor().getNomeDiretor());
+        holder.tv_protagonista.setText(controller.getListMovie().get(position).getProtagonista().getNomeAtor());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), movieList.get(holder.getAdapterPosition()).getTitulo(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(), controller.getListMovie().get(holder.getAdapterPosition()).getTitulo(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -71,7 +57,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return movieList.size();
+        return controller.getListMovie().size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -95,7 +81,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
     }
 
     public void insertItem(Movie movie) {
-        movieList.add(movie);
+        controller.getListMovie().add(movie);
         notifyItemInserted(getItemCount());
     }
 

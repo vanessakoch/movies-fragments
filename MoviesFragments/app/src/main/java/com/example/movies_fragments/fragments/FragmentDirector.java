@@ -15,12 +15,11 @@ import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.adapters.DirectorAdapter;
 
-
-
 public class FragmentDirector extends Fragment {
     View view;
     RecyclerView recyclerView;
     MainActivity activity;
+    DirectorAdapter adapter;
 
     public FragmentDirector(MainActivity activity) {
         this.activity = activity;
@@ -30,17 +29,14 @@ public class FragmentDirector extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.director_fragment, container, false);
+
+        adapter = new DirectorAdapter(activity);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.diretor_recyclerview);
-        DirectorAdapter adapter = new DirectorAdapter(activity, activity.directorsList());
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         recyclerView.setAdapter(adapter);
+
         return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
     }
 
 }
