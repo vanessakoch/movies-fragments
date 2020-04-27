@@ -36,7 +36,7 @@ public class DirectorController {
         return directorList;
     }
 
-    public DirectorController getController(){
+    public static DirectorController getController(){
         if(controller == null){
             controller = new DirectorController();
         }

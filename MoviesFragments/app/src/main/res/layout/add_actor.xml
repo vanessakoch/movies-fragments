@@ -49,7 +49,7 @@
         android:layout_gravity="center"
         android:ems="10"
         android:textAlignment="center"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColor="#8C8484"
         android:textCursorDrawable="@color/design_default_color_primary" />
 

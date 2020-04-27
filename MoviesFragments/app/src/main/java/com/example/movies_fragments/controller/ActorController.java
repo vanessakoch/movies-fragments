@@ -36,7 +36,7 @@ public class ActorController {
         return actorList;
     }
 
-    public ActorController getController(){
+    public static ActorController getController(){
         if(controller == null){
             controller = new ActorController();
         }

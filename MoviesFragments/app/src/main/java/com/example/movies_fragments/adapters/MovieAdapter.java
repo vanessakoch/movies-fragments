@@ -16,16 +16,13 @@ import com.example.movies_fragments.R;
 import com.example.movies_fragments.controller.MovieController;
 import com.example.movies_fragments.entities.Movie;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
     MainActivity activity;
-    MovieController controller = new MovieController();
+    MovieController controller;
 
     public MovieAdapter(MainActivity activity) {
         this.activity = activity;
-        this.controller = controller.getController();
+        this.controller = MovieController.getController();
     }
 
     @NonNull

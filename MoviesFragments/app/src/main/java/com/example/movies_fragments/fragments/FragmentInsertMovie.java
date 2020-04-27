@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.adapters.MovieAdapter;
@@ -56,8 +55,8 @@ public class FragmentInsertMovie extends Fragment {
         View view = inflater.inflate(R.layout.add_movie, container, false);
 
         adapter = new MovieAdapter(activity);
-        actorController = new ActorController();
-        directorController = new DirectorController();
+        actorController = ActorController.getController();
+        directorController = DirectorController.getController();
 
         img_movieadd = (ImageView) view.findViewById(R.id.moviephoto_add);
         nome_movieadd = (EditText) view.findViewById(R.id.movietitle_add);

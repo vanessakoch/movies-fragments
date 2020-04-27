@@ -40,7 +40,7 @@ public class MovieController {
         return movieList;
     }
 
-    public MovieController getController(){
+    public static MovieController getController(){
         if(controller == null){
             controller = new MovieController();
         }

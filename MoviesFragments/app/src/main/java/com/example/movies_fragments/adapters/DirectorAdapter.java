@@ -24,11 +24,11 @@ import java.util.List;
 public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyViewHolder> {
 
     MainActivity activity;
-    DirectorController controller = new DirectorController();
+    DirectorController controller;
 
     public DirectorAdapter(MainActivity activity) {
         this.activity = activity;
-        this.controller = controller.getController();
+        this.controller = DirectorController.getController();
     }
 
     @NonNull

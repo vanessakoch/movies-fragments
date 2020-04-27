@@ -19,11 +19,11 @@ import com.example.movies_fragments.fragments.FragmentInsertMovie;
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder> {
     MainActivity activity;
-    ActorController controller = new ActorController();
+    ActorController controller;
 
     public ActorAdapter(MainActivity activity) {
         this.activity = activity;
-        this.controller = controller.getController();
+        this.controller = ActorController.getController();
     }
 
     @NonNull
