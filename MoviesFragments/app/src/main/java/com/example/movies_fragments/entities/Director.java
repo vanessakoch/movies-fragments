@@ -39,10 +39,6 @@ public class Director {
 
     @Override
     public String toString() {
-        return "Director{" +
-                "fotoDiretor=" + fotoDiretor +
-                ", nomeDiretor='" + nomeDiretor + '\'' +
-                ", dataNascimentoDiretor='" + dataNascimentoDiretor + '\'' +
-                '}';
+        return nomeDiretor;
     }
 }

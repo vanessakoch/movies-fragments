@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,6 +25,11 @@ import com.example.movies_fragments.entities.Actor;
 import com.example.movies_fragments.entities.Director;
 import com.example.movies_fragments.entities.Movie;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 
 public class FragmentInsertMovie extends Fragment {
     ImageView img_movieadd;
@@ -37,6 +43,8 @@ public class FragmentInsertMovie extends Fragment {
     MovieAdapter adapter;
     DirectorController directorController;
     ActorController actorController;
+    ArrayAdapter<Actor> actorArrayAdapter;
+    ArrayAdapter<Director> directorArrayAdapter;
 
     public FragmentInsertMovie(MainActivity activity) {
         this.activity = activity;
@@ -47,6 +55,7 @@ public class FragmentInsertMovie extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_movie, container, false);
 
+        adapter = new MovieAdapter(activity);
         actorController = new ActorController();
         directorController = new DirectorController();
 
@@ -54,41 +63,41 @@ public class FragmentInsertMovie extends Fragment {
         nome_movieadd = (EditText) view.findViewById(R.id.movietitle_add);
         ano_movieadd = (EditText) view.findViewById(R.id.movieyear_add);
         genero_movieadd = (EditText) view.findViewById(R.id.moviegenre_add);
+        btnRegister = (Button) view.findViewById(R.id.btnadd_movie);
         spinner_diretor = (Spinner) view.findViewById(R.id.director_spinner);
         spinner_ator = (Spinner) view.findViewById(R.id.actor_spinner);
-        btnRegister = (Button) view.findViewById(R.id.btnadd_movie);
 
-        adapter = new MovieAdapter(activity);
+        actorArrayAdapter = new ArrayAdapter<Actor>(getContext(), android.R.layout.simple_spinner_dropdown_item, actorController.getListAtor());
+        actorArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_ator.setAdapter(actorArrayAdapter);
+
+        directorArrayAdapter = new ArrayAdapter<Director>(getContext(), android.R.layout.simple_spinner_dropdown_item, directorController.getListDiretor());
+        directorArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_diretor.setAdapter(directorArrayAdapter);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Movie novo = new Movie(R.drawable.chadwick_boseman, String.valueOf(nome_movieadd.getText()), Integer.parseInt(ano_movieadd.getText().toString()),
-                    String.valueOf(genero_movieadd.getText()), directorController.getListDiretor().get(0), actorController.getListAtor().get(0));
-            adapter.insertItem(novo);
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_filme, new FragmentMovie(activity)).commit();
+                Movie novo = new Movie(R.drawable.chadwick_boseman, String.valueOf(nome_movieadd.getText()), Integer.parseInt(ano_movieadd.getText().toString()),
+                        String.valueOf(genero_movieadd.getText()), (Director) spinner_diretor.getSelectedItem(), (Actor) spinner_ator.getSelectedItem());
+                adapter.insertItem(novo);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_filme, new FragmentMovie(activity)).commit();
             }
         });
 
         return view;
     }
 
-    public Director encontraDiretor(){
-        for(Director dir : directorController.getListDiretor()){
-            if(spinner_diretor.getSelectedItem().equals(dir.getNomeDiretor())){
-                return dir;
-            }
-        }
-        return null;
+    public void atualizaSpinnerActor(Actor actor){
+        getActorArrayAdapter().add(actor);
     }
 
-    public Actor encontaAtor(){
-        for(Actor ator : actorController.getListAtor()){
-            if(spinner_ator.getSelectedItem().equals(ator.getNomeAtor())){
-                return ator;
-            }
-        }
-        return null;
+    public ArrayAdapter<Actor> getActorArrayAdapter() {
+        return actorArrayAdapter;
+    }
+
+    public ArrayAdapter<Director> getDirectorArrayAdapter() {
+        return directorArrayAdapter;
     }
 }

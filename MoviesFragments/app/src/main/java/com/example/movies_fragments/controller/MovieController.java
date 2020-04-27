@@ -1,7 +1,6 @@
 package com.example.movies_fragments.controller;
 
 import com.example.movies_fragments.R;
-import com.example.movies_fragments.entities.Actor;
 import com.example.movies_fragments.entities.Movie;
 
 import java.util.ArrayList;

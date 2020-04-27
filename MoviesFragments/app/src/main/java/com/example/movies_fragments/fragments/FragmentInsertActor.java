@@ -53,10 +53,10 @@ public class FragmentInsertActor extends Fragment {
         btnadd_ator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Actor novo = new Actor(R.drawable.chadwick_boseman, String.valueOf(nome_ator.getText()), String.valueOf(date_ator.getText()));
-            adapterAtor.insertItem(novo);
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_ator, new FragmentActor(activity)).commit();
+                Actor novo = new Actor(R.drawable.chadwick_boseman, String.valueOf(nome_ator.getText()), String.valueOf(date_ator.getText()));
+                adapterAtor.insertItem(novo);
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_ator, new FragmentActor(activity)).commit();
             }
         });
 

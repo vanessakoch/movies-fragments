@@ -14,6 +14,7 @@ import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.controller.ActorController;
 import com.example.movies_fragments.entities.Actor;
+import com.example.movies_fragments.fragments.FragmentInsertMovie;
 
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder> {
