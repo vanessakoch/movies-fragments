@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +13,6 @@ import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.controller.ActorController;
 import com.example.movies_fragments.entities.Actor;
-import com.example.movies_fragments.fragments.FragmentInsertMovie;
-
 
 public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder> {
     MainActivity activity;
@@ -40,13 +37,6 @@ public class ActorAdapter extends RecyclerView.Adapter<ActorAdapter.MyViewHolder
         holder.img_ator.setImageResource(controller.getListAtor().get(position).getFotoAtor());
         holder.txt_nomeAtor.setText(controller.getListAtor().get(position).getNomeAtor());
         holder.txt_dataNascimentoAtor.setText(controller.getListAtor().get(position).getDataNascimentoAtor());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), controller.getListAtor().get(holder.getAdapterPosition()).getNomeAtor(),Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

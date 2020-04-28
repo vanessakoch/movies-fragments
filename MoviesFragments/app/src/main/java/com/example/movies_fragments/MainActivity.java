@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity  {
     List<Director> directorList;
     List<Actor> actorList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,9 +51,8 @@ public class MainActivity extends AppCompatActivity  {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0);
-
-
     }
+
     public void newFragmentDirector(View v){
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame_diretor, new FragmentInsertDirector(this)).commit();

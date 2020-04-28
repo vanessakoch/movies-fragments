@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundfragment"
+    android:background="@color/card"
     android:orientation="vertical">
 
     <ImageView
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="127dp"
         android:layout_margin="30dp"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/emptydirector" />
 
     <TextView
         android:id="@+id/textView4"
@@ -26,6 +26,7 @@
         android:layout_width="345dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textAlignment="center"
@@ -47,8 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="20dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="date"
         android:textAlignment="center"
         android:textColor="#8C8484"
         android:textCursorDrawable="@color/design_default_color_primary" />

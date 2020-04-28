@@ -24,12 +24,6 @@ import com.example.movies_fragments.entities.Actor;
 import com.example.movies_fragments.entities.Director;
 import com.example.movies_fragments.entities.Movie;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-
 public class FragmentInsertMovie extends Fragment {
     ImageView img_movieadd;
     EditText nome_movieadd;
@@ -66,18 +60,18 @@ public class FragmentInsertMovie extends Fragment {
         spinner_diretor = (Spinner) view.findViewById(R.id.director_spinner);
         spinner_ator = (Spinner) view.findViewById(R.id.actor_spinner);
 
-        actorArrayAdapter = new ArrayAdapter<Actor>(getContext(), android.R.layout.simple_spinner_dropdown_item, actorController.getListAtor());
+        actorArrayAdapter = new ArrayAdapter<Actor>(getContext(), R.layout.spinner_item, actorController.getListAtor());
         actorArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_ator.setAdapter(actorArrayAdapter);
 
-        directorArrayAdapter = new ArrayAdapter<Director>(getContext(), android.R.layout.simple_spinner_dropdown_item, directorController.getListDiretor());
+        directorArrayAdapter = new ArrayAdapter<Director>(getContext(), R.layout.spinner_item, directorController.getListDiretor());
         directorArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_diretor.setAdapter(directorArrayAdapter);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Movie novo = new Movie(R.drawable.chadwick_boseman, String.valueOf(nome_movieadd.getText()), Integer.parseInt(ano_movieadd.getText().toString()),
+                Movie novo = new Movie(R.drawable.movieempty, String.valueOf(nome_movieadd.getText()), Integer.parseInt(ano_movieadd.getText().toString()),
                         String.valueOf(genero_movieadd.getText()), (Director) spinner_diretor.getSelectedItem(), (Actor) spinner_ator.getSelectedItem());
                 adapter.insertItem(novo);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -88,15 +82,4 @@ public class FragmentInsertMovie extends Fragment {
         return view;
     }
 
-    public void atualizaSpinnerActor(Actor actor){
-        getActorArrayAdapter().add(actor);
-    }
-
-    public ArrayAdapter<Actor> getActorArrayAdapter() {
-        return actorArrayAdapter;
-    }
-
-    public ArrayAdapter<Director> getDirectorArrayAdapter() {
-        return directorArrayAdapter;
-    }
 }

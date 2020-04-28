@@ -52,7 +52,7 @@ public class FragmentInsertDirector extends Fragment {
         btnadd_diretor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Director novo = new Director(R.drawable.todd_phillips, String.valueOf(nome_diretor.getText()), String.valueOf(date_diretor.getText()));
+                Director novo = new Director(R.drawable.emptydirector, String.valueOf(nome_diretor.getText()), String.valueOf(date_diretor.getText()));
                 adapterDiretor.insertItem(novo);
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame_diretor, new FragmentDirector(activity)).commit();

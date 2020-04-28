@@ -1,25 +1,18 @@
 package com.example.movies_fragments.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
-import com.example.movies_fragments.controller.ActorController;
 import com.example.movies_fragments.controller.DirectorController;
 import com.example.movies_fragments.entities.Director;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyViewHolder> {
 
@@ -45,13 +38,6 @@ public class DirectorAdapter extends RecyclerView.Adapter<DirectorAdapter.MyView
         holder.img_diretor.setImageResource(controller.getListDiretor().get(position).getFotoDiretor());
         holder.txt_nomeDiretor.setText(controller.getListDiretor().get(position).getNomeDiretor());
         holder.txt_dataNascimentoDiretor.setText(controller.getListDiretor().get(position).getDataNascimentoDiretor());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), controller.getListDiretor().get(holder.getAdapterPosition()).getNomeDiretor(),Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override

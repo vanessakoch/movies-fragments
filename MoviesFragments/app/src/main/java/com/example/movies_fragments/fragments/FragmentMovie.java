@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.movies_fragments.MainActivity;
 import com.example.movies_fragments.R;
 import com.example.movies_fragments.adapters.MovieAdapter;
-import com.example.movies_fragments.entities.Movie;
-
-import java.util.List;
 
 public class FragmentMovie extends Fragment {
     View view;

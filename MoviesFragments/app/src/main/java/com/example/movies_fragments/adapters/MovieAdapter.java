@@ -5,10 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movies_fragments.MainActivity;
@@ -42,14 +40,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
         holder.tv_genero.setText(controller.getListMovie().get(position).getGenero());
         holder.tv_diretor.setText(controller.getListMovie().get(position).getDiretor().getNomeDiretor());
         holder.tv_protagonista.setText(controller.getListMovie().get(position).getProtagonista().getNomeAtor());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(view.getContext(), controller.getListMovie().get(holder.getAdapterPosition()).getTitulo(),Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     @Override
@@ -67,7 +57,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             tv_titulo = (TextView) itemView.findViewById(R.id.txtTitulo);
             tv_lancamento = (TextView) itemView.findViewById(R.id.txtLancamento);
             tv_genero = (TextView) itemView.findViewById(R.id.txtGenero);

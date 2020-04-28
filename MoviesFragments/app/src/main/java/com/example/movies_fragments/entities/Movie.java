@@ -64,4 +64,9 @@ public class Movie {
     public void setProtagonista(Actor protagonista) {
         this.protagonista = protagonista;
     }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }
